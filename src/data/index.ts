@@ -44,30 +44,28 @@ export const experiences: Experience[] = [
 
 export const skills: Skill[] = [
   // Programming Languages
-  { name: 'Python', level: 90, category: 'programming' },
-  { name: 'SQL', level: 85, category: 'programming' },
-  { name: 'C++', level: 75, category: 'programming' },
+  { name: 'Python', category: 'programming' },
+  { name: 'SQL', category: 'programming' },
+  { name: 'C++', category: 'programming' },
   
   // Data Science & ML
-  { name: 'NumPy', level: 85, category: 'dataScience' },
-  { name: 'Pandas', level: 90, category: 'dataScience' },
-  { name: 'Scikit-learn', level: 80, category: 'dataScience' },
-  { name: 'TensorFlow', level: 75, category: 'dataScience' },
-  { name: 'PyTorch', level: 70, category: 'dataScience' },
-  
-  // Data Visualization
-  { name: 'Matplotlib', level: 85, category: 'dataScience' },
-  { name: 'Seaborn', level: 80, category: 'dataScience' },
-  { name: 'Tableau', level: 75, category: 'dataScience' },
-  { name: 'Power BI', level: 70, category: 'dataScience' },
+  { name: 'NumPy', category: 'dataScience' },
+  { name: 'Pandas', category: 'dataScience' },
+  { name: 'Scikit-learn', category: 'dataScience' },
+  { name: 'TensorFlow', category: 'dataScience' },
+  { name: 'PyTorch', category: 'dataScience' },
+  { name: 'Matplotlib', category: 'dataScience' },
+  { name: 'Seaborn', category: 'dataScience' },
+  { name: 'Tableau', category: 'dataScience' },
+  { name: 'Power BI', category: 'dataScience' },
   
   // DevOps
-  { name: 'Git', level: 80, category: 'devOps' },
-  { name: 'Docker', level: 65, category: 'devOps' },
+  { name: 'Git', category: 'devOps' },
+  { name: 'Docker', category: 'devOps' },
   
   // Databases
-  { name: 'MySQL', level: 85, category: 'database' },
-  { name: 'MongoDB', level: 70, category: 'database' }
+  { name: 'MySQL', category: 'database' },
+  { name: 'MongoDB', category: 'database' }
 ];
 
 export const courses = [

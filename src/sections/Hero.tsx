@@ -35,7 +35,9 @@ const Hero: React.FC = () => {
                 Contact Me
               </a>
               <a 
-                href="#" 
+                href="/vivek_pipalla_resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-3 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-medium rounded-md shadow-sm border border-gray-200 dark:border-gray-700 transition-colors duration-300 flex items-center"
               >
                 <FileText size={18} className="mr-2" />

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Mail, Phone, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const ContactForm: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,30 +21,46 @@ const ContactForm: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const result = await emailjs.sendForm(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        form.current!,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
+      if (result.text === 'OK') {
+        setSubmitStatus({
+          success: true,
+          message: 'Thank you for your message! I\'ll get back to you soon.'
+        });
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
       setSubmitStatus({
-        success: true,
-        message: 'Thank you for your message! I\'ll get back to you soon.'
+        success: false,
+        message: 'Sorry, there was an error sending your message. Please try again later.'
       });
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
+    } finally {
+      setIsSubmitting(false);
       
       // Clear status after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
       }, 5000);
-    }, 1500);
+    }
   };
 
   return (
@@ -64,7 +82,7 @@ const ContactForm: React.FC = () => {
         </div>
       </div>
       
-      <form onSubmit={handleSubmit}>
+      <form ref={form} onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Name

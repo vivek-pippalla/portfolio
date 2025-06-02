@@ -43,8 +43,8 @@ const Skills: React.FC = () => {
           ))}
         </div>
         
-        <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 p-8 rounded-lg shadow-md">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {filteredSkills.map(skill => (
               <SkillBar key={skill.name} skill={skill} />
             ))}

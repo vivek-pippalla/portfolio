@@ -23,17 +23,10 @@ const SkillBar: React.FC<SkillBarProps> = ({ skill }) => {
   };
 
   return (
-    <div className="mb-4">
-      <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.name}</span>
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{skill.level}%</span>
-      </div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div 
-          className={`h-2.5 rounded-full bg-gradient-to-r ${getGradient(skill.category)}`} 
-          style={{ width: `${skill.level}%` }}
-        >
-        </div>
+    <div className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700">
+      <div className="flex items-center space-x-2">
+        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${getGradient(skill.category)}`}></div>
+        <span className="text-gray-800 dark:text-gray-200 font-medium">{skill.name}</span>
       </div>
     </div>
   );

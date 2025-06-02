@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Project } from '../types';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ProjectCardProps {
   project: Project;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const [showAllTech, setShowAllTech] = useState(false);
+
+  const displayedTechnologies = showAllTech 
+    ? project.technologies 
+    : project.technologies.slice(0, 5);
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
       {project.image && (
@@ -23,7 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
         
         <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.slice(0, 5).map((tech, index) => (
+          {displayedTechnologies.map((tech, index) => (
             <span 
               key={index} 
               className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full"
@@ -32,9 +38,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </span>
           ))}
           {project.technologies.length > 5 && (
-            <span className="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-full">
-              +{project.technologies.length - 5} more
-            </span>
+            <button
+              onClick={() => setShowAllTech(!showAllTech)}
+              className="px-2 py-1 text-xs font-medium bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded-full flex items-center gap-1 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+            >
+              {showAllTech ? (
+                <>Show Less <ChevronUp size={12} /></>
+              ) : (
+                <>+{project.technologies.length - 5} more <ChevronDown size={12} /></>
+              )}
+            </button>
           )}
         </div>
         

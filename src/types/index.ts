@@ -17,6 +17,5 @@ export interface Experience {
 
 export interface Skill {
   name: string;
-  level: number;
   category: 'programming' | 'dataScience' | 'devOps' | 'database';
 }
